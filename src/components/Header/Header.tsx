@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Button } from "../Button/Button"
-import { useTelegram } from "../hooks/useTelegram"
+import { useTelegram } from "../../hooks/useTelegram"
 
 
 export const Header: React.FC = () => {
