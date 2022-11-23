@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
     return (
         <header className="header">
             <Button onClick={onClose}>Закрыть</Button>
-            <span className="username">{user?.usernames}</span>
+            <span className="username">{user?.id}</span>
         </header>
     )
 }
