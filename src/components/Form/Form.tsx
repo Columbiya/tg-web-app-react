@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
 import './Form.css'
 
@@ -12,6 +12,16 @@ export const Form: React.FC = () => {
     const [street, setStreet] = useState('')
     const [subject, setSubject] = useState<SUBJECTS>(SUBJECTS.PHYSICAL)
     const { tg } = useTelegram()
+
+    const onSendData = useCallback(() => {
+        const data = {
+            country, 
+            street,
+            subject
+        }
+
+        tg.sendData(JSON.stringify(data))
+    }, [])
 
     useEffect(() => {
         tg.MainButton.setParams({
@@ -27,6 +37,12 @@ export const Form: React.FC = () => {
             tg.MainButton.show()
         }
     }, [country, street])
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+
+        return () => tg.offEvent('mainButtonClicked', onSendData)
+    }, [])
 
     return (
         <div className="form">
