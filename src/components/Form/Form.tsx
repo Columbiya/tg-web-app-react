@@ -42,7 +42,7 @@ export const Form: React.FC = () => {
         tg.onEvent('mainButtonClicked', onSendData)
 
         return () => tg.offEvent('mainButtonClicked', onSendData)
-    }, [])
+    }, [onSendData])
 
     return (
         <div className="form">
